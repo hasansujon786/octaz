@@ -1,0 +1,42 @@
+// .box {
+//   background: pink;
+//   @include respond-mf(lt-mobile) {
+//     background: yellow;
+//   }
+//   @include respond-mf(lt-phablet) {
+//     background: orange;
+//   }
+//   @include respond-mf(lt-tablet) {
+//     background: magenta;
+//   }
+//   @include respond-mf(lt-desktop) {
+//     background: orangered;
+//   }
+//   @include respond-mf(lt-desktophd) {
+//     background: darkred;
+//   }
+// }
+
+
+// .box {
+//   background: pink;
+//   @include respond-mf(st-desktophd) {
+//     background: darkred;
+//   }
+//   @include respond-mf(st-desktop) {
+//     background: orangered;
+//   }
+//   @include respond-mf(st-tablet) {
+//     background: magenta;
+//   }
+//   @include respond-mf(st-phablet) {
+//     background: orange;
+//   }
+//   @include respond-mf(st-mobile) {
+//     background: yellow;
+//   }
+// }
+
+
+
+

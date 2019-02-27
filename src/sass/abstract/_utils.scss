@@ -1,0 +1,37 @@
+// Utilities
+//––––––––––––––––––––––––––––––––––––––––––––––––––
+
+.u-fw {
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.u-mfw {
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+.u-pr { float: right; }
+
+.u-pl { float: left; }
+
+.bg { background: var(--blue) !important; }
+
+// typography
+.u-tc { text-align: center !important; }
+.u-tr { text-align: right !important; }
+.u-tl { text-align: left !important; }
+
+// margins
+.u-mb-sm { margin-bottom: 1.5rem !important; }
+.u-mb-md { margin-bottom: 4rem !important; }
+.u-mb-big { margin-bottom: 8rem !important; }
+
+.u-mt-big { margin-top: 8rem !important; }
+.u-mt-huge { margin-top: 10rem !important; }
+
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

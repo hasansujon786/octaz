@@ -1,0 +1,71 @@
+:root {
+  --blue: #007bff;
+  --indigo: #6610f2;
+  --purple: #6f42c1;
+  --pink: #e83e8c;
+  --red: #dc3545;
+  --orange: #fd7e14;
+  --yellow: #ffc107;
+  --green: #28a745;
+  --teal: #20c997;
+  --cyan: #17a2b8;
+  --white: #fff;
+  --black: #000;
+  --gray: #6c757d;
+  --gray-dark: #343a40;
+  // --primary: #08d;
+  // --secondary: #6c757d;
+  --success: #28a745;
+  --info: #17a2b8;
+  --warning: #ffc107;
+  --danger: #dc3545;
+  --light: #f8f9fa;
+  --dark: #343a40;
+  --breakpoint-xs: 0;
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+
+  // fonts
+  --font-family: 'Lato', 'HelveticaNeue', 'Helvetica Neue', Helvetica, Arial;
+  --default-font-size: 1.6rem;
+  --font-color: #565c63;
+  --font-secondary: rgba(86, 97, 109, 0.8);
+  --font-dark: rgb(28, 25, 61);
+  --btn-text: 2rem;
+
+  // Theme colors
+  --primary:hsl(157, 49%, 66%) ;
+  --primary-light: hsl(155, 47%, 81%);
+  --primary-dark:hsl(157, 49%, 55%) ;
+  --secondary: #FF7B;
+  --secondary: #ff745f;;
+  --secondary-dark: #ff6851;
+
+  // Link colors 
+  --link-color: #007bff;
+  --link-color-dark: #004999;
+
+  // grays
+  --light-2: rgb(247, 247, 247);
+  --light-3: rgb(240, 240, 240);
+  --light-4: rgb(172, 172, 172);
+  --disable-color: rgb(230, 230, 230);
+  --dark-grey: rgb(71, 71, 71);
+  --proto: rgb(128, 128, 128);
+
+  // Shadows
+  --shadow-color: rgba(0, 0, 0, 0.4);
+  --obj-shadow: 0 0px 3px var(--shadow-color);
+
+  // border
+  --border-color: #E2E2E2;
+  --side-border: 2px solid var(--border-color);
+
+  // Global Properties
+  --nav-icon: hsla(156, 66%, 23%, 0.48);
+  --radio-transition: all 0.25s linear;
+  --global-radios: 3px;
+}
+
