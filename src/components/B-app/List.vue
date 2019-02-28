@@ -55,7 +55,18 @@ export default {
       showInc: true,
     }
   },
-  props: ['year', 'month', 'totalInc'],
+  // props: ['year', 'month', 'totalInc'],
+  props: {
+    totalInc: {
+      type: Number,
+    },
+    year: {
+      type: Number
+    },
+    month: {
+      type: Number
+    }
+  },
   mixins: [formatNum],
   methods: {
     deleteListItem(item, i) {

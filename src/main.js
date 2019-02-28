@@ -14,7 +14,5 @@ new Vue({
   render: h => h(App)
 }).$mount('#app')
 
-
-
 Vue.component('app-navbar', Navbar)
 Vue.component('app-notification', Notification)

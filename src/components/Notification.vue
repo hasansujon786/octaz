@@ -1,6 +1,6 @@
 <template>
   <transition name="bounce">
-    <div class="notification" v-if="IsShown">
+    <div @mouseleave="hoverOut" @mouseover="hovering" class="notification" v-if="IsShown">
       <div class="notification__content">
         <button @click="hideNotification" class="notification__closeBtn">X</button>
         <h5 class="notification__title">{{ content.title }}</h5>
@@ -15,6 +15,7 @@ export default {
   name: 'Notification',
   data() {
     return {
+      hoverState: false
     }
   },
   props: {
@@ -28,40 +29,59 @@ export default {
         title: 'Title',
         text: 'This is a sample text',
       })
+    },
+    time: {
+      type: Number,
+      default: 3000
     }
   },
   methods: {
     hideNotification() {
       this.$emit('changeIsShown')
+    },
+    hideNotificationAuto() {
+      setTimeout(() => {
+        if(!this.hoverState) {
+          this.$emit('changeIsShown')
+        }
+      }, this.time)
+    },
+    hovering() {
+      console.log('item is hovered')
+      this.hoverState = true
+    },
+    hoverOut() {
+      console.log('hover out')
+      this.hoverState = false
+      this.hideNotificationAuto()
     }
   },
   watch: {
     IsShown() {
-      setTimeout(() => {
-        this.$emit('changeIsShown')
-      }, 3000)
-    }
-  },
+      this.hideNotificationAuto()
+    },
+  }
 }
 </script>
  
 <style lang="scss" scoped>
 .notification {
   position: fixed;
-  top: 2rem;
-  right: .5rem;
+  top: 6rem;
+  // bottom: 5rem;
+  right: 1rem;
   z-index: 2000;
   &__title {
     color: var(--light-4);
     font-size: 1.6rem;
     font-weight: normal;
-    margin-bottom: .5rem;
+    margin-bottom: .3rem;
     letter-spacing: .6px;
   }
   &__text {
     font-size: 1.4rem;
     color: var(--light-4);
-    opacity: .5;
+    opacity: .7;
   }
   &__content {
     background: rgb(27, 27, 32);
@@ -70,7 +90,6 @@ export default {
     padding: 1rem 2rem;
     margin-bottom: 1rem;
   }
-
   &__closeBtn {
     color: currentColor;
     cursor: pointer;
@@ -84,15 +103,14 @@ export default {
 }
 
 .bounce-enter-active {
-  animation: bounce-in 1.5s ease;
+  animation: bounce-in .9s ease;
 }
 .bounce-leave-active {
   animation: bounce-in .9s reverse ease;
 }
 @keyframes bounce-in {
   0% {
-    transform: translateX(60rem);
-    // opacity: .5;
+    transform: translateX(42rem);
   }
   100% {
     transform: translateX(0);

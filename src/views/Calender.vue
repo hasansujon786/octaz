@@ -12,21 +12,22 @@
 
       <div class="calander">
         <div class="calander__month"
-          :class="{'disabled': ifThisYear && thisMonth < i}" @click="goTo(i)"
-          v-for="(month,i) in months" :key="month"
-        >
+          :class="{'disabled': ifThisYear && thisMonth < i}"
+          @click="goTo(i)"
+          v-for="(month,i) in months"
+          :key="month" >
           <div v-if="thisMonth === i && ifThisYear" class="notification-batch"></div>
           <div class="calander__text">
             <h5 class="calander__mName">{{ month }}</h5>
-
-            <div v-if="thisMonth >= i"  class="u-tr calander__details">
-              <h6>+300</h6>
-              <h6>-300</h6>
-              <h5 class="now">+3000</h5>
+            <div v-if="isGoingToRender(year, i)" class="u-tr calander__details">
+              <!-- <h6>+ {{ budget(year, i).total.inc }}</h6>
+              <h6>- {{ budget(year, i).total.exp }}</h6> -->
+              <h5 class="now">$ {{ budget(year, i).now }}</h5>
             </div>
           </div>
         </div>
       </div>
+
     </div>
   </div>
 </template>
@@ -58,7 +59,7 @@ export default {
     goTo(i) {
       const date = new Date()
       if(this.year === date.getFullYear() && this.thisMonth < i) {
-        return 
+        return
       } else {
         this.$router.push({
           name: 'budget-app',
@@ -75,8 +76,24 @@ export default {
       const date = new Date()
       return this.year === date.getFullYear()
     },
+    budget() {
+      return (year, month) => {
+        const allData = this.$store.getters.getAllBudgetsOnCal({ year, month })
+        if (allData) {
+          return allData
+        }
+      }
+    },
+    isGoingToRender() {
+      return (year, month) => {
+        const allData = this.$store.getters.getAllBudgetsOnCal({ year, month })
+        if (allData) {
+          return allData.total.inc > 0 || allData.total.exp > 0
+        }
+      }
+    }
   },
-  created() {
+  mounted() {
     const date = new Date()
     this.year = date.getFullYear()
     this.thisMonth = date.getMonth()
@@ -99,7 +116,7 @@ export default {
     color: currentColor;
 
     &--plus {
-      transform: rotate(180deg)
+      transform: rotate(180deg);
     }
 
     &:nth-of-type(2) {
@@ -132,26 +149,32 @@ export default {
   border-radius: var(--global-radios);
 
   &__month {
-    padding: .5rem 1rem;
+    padding: 0.5rem 1rem;
     border-radius: 0;
     position: relative;
     border: 1px solid var(--border-color);
     cursor: pointer;
+    min-height: 13rem;
   }
 
-  &__mName { 
+  &__mName {
     font-weight: 400;
   }
-
 
   &__text {
     text-align: left;
     font-size: 1.8rem;
     font-weight: 100;
-
-    h5.now {
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    // align-items: 
+    .now {
       color: var(--primary-dark);
-      // font-weight: normal;
+      font-weight: bold;
+      // font-size: 1.8rem;
+      font-size: 2rem;
     }
   }
 

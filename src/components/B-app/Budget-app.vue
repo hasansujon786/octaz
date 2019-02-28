@@ -25,7 +25,7 @@
     </div>
 
     <app-list :totalInc="budget.total.inc" :year="year" :month="id"></app-list>
-    <app-notification @changeIsShown="notific = false" :IsShown="notific"></app-notification>
+    <app-notification :content="notificContent"  @changeIsShown="notific = false" :IsShown="notific"></app-notification>
   </div>
 </template>
 
@@ -38,12 +38,16 @@ export default {
   name: 'BudgetApp',
   data() {
     return {
-      year: this.$route.params.year,
-      id: this.$route.params.id, // this is the index of month
+      year: parseFloat( this.$route.params.year ),
+      id: parseFloat( this.$route.params.id ), // this is the index of month
       description: '',
       value: 0,
       type: 'inc',
-      notific: false
+      notific: false,
+      notificContent: {
+        title: 'Welcome',
+        text: 'Your lists are empty, start bugeting.'
+      } 
     }
   },
   methods: {
@@ -74,12 +78,12 @@ export default {
     }
   },
   mounted() {
-    this.startBudget(this.year, this.id)
-    setTimeout(() => {
-      if( this.budget.all.inc <= 0 && this.budget.all.exp <= 0 ) {
+      if( this.budget && this.budget.all.inc <= 0 && this.budget.all.exp <= 0 ) {
         this.notific = true
       }
-    }, 1000)
+  },
+  created() {
+    this.startBudget(this.year, this.id)
   },
   computed: {
     budget() {

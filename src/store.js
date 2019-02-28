@@ -40,10 +40,7 @@ export default new Vuex.Store({
       if (!state.calender[payload.year].hasOwnProperty(payload.month)) {
         // add a obj with current month if it doesn't has one
         state.calender[payload.year][payload.month] = db
-        console.log('new month obj added')
-        setTimeout(() => {
-          this.dispatch('popNotification')
-        }, 1000)
+        // console.log('new month obj added')
       } else {
         console.warn('not added month')
       }
@@ -82,13 +79,6 @@ export default new Vuex.Store({
       state.calender = data
       // console.log(data)
     },
-    pop_Notification(state) {
-      console.log('mutation called')
-      state.notification.isShown = true
-      setTimeout(() => {
-        state.notification.isShown = false
-      }, 3000)
-    }
   },
   actions: {
     setNewBudget({ commit }, payload) {
@@ -103,10 +93,6 @@ export default new Vuex.Store({
     addImportData({ commit }, data) {
       commit('add_Import_Data', data)
     },
-    popNotification({commit}, data) {
-      console.log('action called')
-      commit('pop_Notification', data)
-    }
   },
   getters: {
     getFullBudget: state => ({year, month}) => {
@@ -133,6 +119,14 @@ export default new Vuex.Store({
     getAllCalenderData(state) {
       // Get all the Calender data for Export
       return state.calender
+    },
+    getAllBudgetsOnCal: state => ({year, month}) => {
+      // Get the full budget of selected month & year
+      if (state.calender.hasOwnProperty(year)) {
+        if (state.calender[year].hasOwnProperty(month)) {
+          return state.calender[year][month].budget
+        }
+      }
     },
   }
 })
